@@ -23,15 +23,17 @@ modules:
     install:
       - 1password
       - btop
-
-  - type: brew
-    install:
       - neovim
 
-  - type: flatpaks
-    install:
-      - md.obsidian.Obsidian
-      - org.mozilla.firefox
+  - type: brew
+    auto-update: true
+    brew-analytics: false
+
+  - type: default-flatpaks
+    configurations:
+      - scope: system
+        install:
+          - md.obsidian.Obsidian
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
 
