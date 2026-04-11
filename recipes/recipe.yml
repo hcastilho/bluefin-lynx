@@ -16,6 +16,9 @@ modules:
   #   files:
   #     - source: system
   #       destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+  - type: script
+    snippets:
+      - "rpm --import https://downloads.1password.com/linux/keys/1password.asc"
 
   - type: rpm-ostree
     repos:
