@@ -1,0 +1,244 @@
+# Inherited Package Inventory
+
+Packages included by the base image layers. These are not installed by `recipes/recipe.yml` — they come from upstream.
+
+## 1. Base Fedora Silverblue (the upstream foundation)
+
+### System Core, Boot & Kernel
+| Package | Description |
+|---------|-------------|
+| kernel | The Linux Kernel |
+| systemd | System and service manager |
+| grub2 | Bootloader |
+| ostree | Operating system versioning/staged updates |
+| rpm-ostree | Hybrid package/image management tool |
+| btrfs-progs | Utilities for the Btrfs filesystem |
+| selinux-policy | Security-Enhanced Linux core policy |
+| shim | First-stage bootloader for Secure Boot |
+| dracut | Initramfs generation tool |
+| akmods | Automatic Kernel Module build system |
+| kmod | Binaries to load/unload kernel modules |
+| kernel-devel | Headers needed to build modules via akmods |
+
+### Configuration & Settings (dconf)
+| Package | Description |
+|---------|-------------|
+| dconf | Low-level configuration database (Registry) |
+| dconf-service | D-Bus service for handling settings writes |
+| glib2 | Provides the `gsettings` API and CLI tool |
+| gnome-settings-daemon | Applies configuration to hardware and UI |
+
+### Desktop Environment (GNOME Core)
+| Package | Description |
+|---------|-------------|
+| gnome-shell | The core user interface of GNOME |
+| mutter | GNOME window manager and compositor |
+| nautilus | GNOME file manager |
+| gnome-control-center | Main system settings application |
+| gnome-software | Graphical app store (Flatpak/RPM management) |
+| gdm | GNOME Display Manager (Login screen) |
+| xdg-desktop-portal | Bridges between sandbox and desktop |
+| gnome-session | Manages the user session |
+| gnome-terminal | Standard GNOME terminal emulator |
+| vte291 | Terminal emulator widget used by GNOME |
+
+### Hardware & Authentication
+| Package | Description |
+|---------|-------------|
+| fprintd | Fingerprint management daemon |
+| fprintd-pam | PAM module for fingerprint login |
+| pipewire | Modern multimedia and audio server |
+| wireplumber | Session manager for PipeWire |
+| mesa-dri-drivers | Core OpenGL/3D graphics drivers |
+| alsa-utils | Command-line audio utilities |
+| bluez | Linux Bluetooth stack |
+| iw | Wireless device configuration tool |
+| wpa_supplicant | Wi-Fi authentication tool |
+| thermald | Intel thermal management daemon |
+| fwupd | Firmware update service (BIOS/UEFI/Docks) |
+| upower | Power management and battery tracking |
+
+### Networking & Security
+| Package | Description |
+|---------|-------------|
+| NetworkManager | Network connection management |
+| firewalld | Dynamic firewall daemon |
+| openssh-server | Secure Shell server for remote access |
+| polkit | System-wide privilege management |
+| gnupg2 | GNU Privacy Guard (OpenPGP) |
+| ca-certificates | Trusted Root Certificate authorities |
+| iptables | Network packet filtering |
+
+### Containers & Sandboxing
+| Package | Description |
+|---------|-------------|
+| flatpak | Sandboxed app deployment framework |
+| podman | Daemonless container engine |
+| buildah | Tool for building container images |
+| skopeo | Container image inspection tool |
+| bubblewrap | Low-level unprivileged sandboxing tool |
+
+### Essential CLI Utilities
+| Package | Description |
+|---------|-------------|
+| bash | The default Linux shell |
+| coreutils | Basic file, shell, and text utilities |
+| curl | Tool for transferring data with URLs |
+| wget | Network file downloader |
+| sudo | Temporary administrative access |
+| tar | Archive utility |
+| gzip | Compression utility |
+| findutils | Tools for finding files (find, xargs) |
+| iproute | Network routing and interface tools |
+| nano | Simple, user-friendly text editor |
+| vi | The classic visual text editor |
+
+---
+
+## 2. Bluefin Base (the workstation layer)
+
+### Development & Shells
+| Package | Description |
+|---------|-------------|
+| gcc | GNU C Compiler |
+| make | Build automation tool |
+| python3-pip | Python package installer |
+| python3-pygit2 | Python Git bindings |
+| just | Command runner for system tasks |
+| fish | Friendly Interactive Shell |
+| zsh | Z-Shell |
+| tmux | Terminal multiplexer |
+| bash-color-prompt | Colored prompt support |
+| glow | Terminal Markdown renderer |
+| gum | Interactive shell script tool |
+| wl-clipboard | Wayland copy/paste tools |
+| xdg-terminal-exec | Standardized terminal launcher |
+
+### Filesystems & Backups
+| Package | Description |
+|---------|-------------|
+| rclone | Cloud storage sync tool |
+| borgbackup | Deduplicating backup tool |
+| restic | Fast, secure backup tool |
+| cryfs | Cloud-optimized encryption |
+| fuse-encfs | Encrypted filesystem (FUSE) |
+| davfs2 | WebDAV mounting |
+| autofs | Automatic filesystem mounting |
+| bcache-tools | SSD caching utilities |
+| samba | Windows file sharing (SMB) |
+| samba-dcerpc | SMB protocol modules |
+| samba-ldb-ldap-modules | SMB/LDAP integration |
+| samba-winbind-clients | Windows domain integration |
+| samba-winbind-modules | Windows domain integration |
+
+### Hardware & Drivers
+| Package | Description |
+|---------|-------------|
+| hplip | HP Printer/Scanner drivers |
+| printer-driver-brlaser | Brother Laser printer drivers |
+| foo2zjs | Specific laser printer drivers |
+| ddcutil | External monitor control (DDC/CI) |
+| lm_sensors | Hardware temperature monitoring |
+| powerstat | Power consumption monitoring |
+| powertop | Battery & power optimization |
+| pulseaudio-utils | Audio CLI utilities |
+| switcheroo-control | Dual-GPU switching management |
+| igt-gpu-tools | GPU debugging (Intel focused) |
+| libratbag-ratbagd | Gaming mouse configuration daemon |
+| input-remapper | Key/Mouse button remapping |
+| evtest | Input device debugging |
+| usbip | Share USB devices over network |
+
+### UI & Fonts
+| Package | Description |
+|---------|-------------|
+| gnome-tweaks | Advanced GNOME settings |
+| zenity | GUI dialogs for scripts |
+| adw-gtk3-theme | Libadwaita look for GTK3 apps |
+| adwaita-fonts-all | Standard GNOME fonts |
+| jetbrains-mono-fonts-all | Developer-centric monospace font |
+| opendyslexic-fonts | High-readability fonts |
+| nautilus-gsconnect | Android integration for file manager |
+
+### Mobile Device Support
+| Package | Description |
+|---------|-------------|
+| ifuse | iPhone/iPod Touch mounting |
+| libimobiledevice | iOS device communication library |
+| usbmuxd | iOS device connection daemon |
+
+---
+
+## 3. Bluefin-DX (the developer experience layer)
+
+### IDEs & Professional Dev Tools
+| Package | Description |
+|---------|-------------|
+| code | Visual Studio Code (Official binary) |
+| android-tools | adb and fastboot for Android development |
+| flatpak-builder | Tool for building Flatpak applications |
+| git-subtree | Git sub-project management |
+| git-svn | Git/Subversion bidirectional operation |
+| cascadia-code-fonts | Microsoft's developer-focused font |
+
+### Container Engines & Tools
+| Package | Description |
+|---------|-------------|
+| docker-ce | Docker Community Edition Engine |
+| docker-ce-cli | Docker CLI client |
+| containerd.io | Industry-standard container runtime |
+| docker-compose-plugin | Docker Compose V2 support |
+| docker-buildx-plugin | Docker Buildx plugin |
+| podman-compose | Docker-compose compatibility for Podman |
+| podman-machine | Tool for managing podman VMs |
+| podman-tui | Terminal UI for Podman |
+| udica | SELinux policy generator for containers |
+
+### Virtualization (KVM/QEMU/Incus)
+| Package | Description |
+|---------|-------------|
+| qemu | Full system emulation |
+| qemu-img | QEMU disk image utility |
+| qemu-system-x86-core | Core QEMU system emulation |
+| qemu-user-static | Static user-mode emulation |
+| libvirt | Library for managing virtualization |
+| virt-manager | GUI for managing VMs |
+| virt-viewer | UI for accessing VM displays |
+| virt-v2v | VM conversion tool (to KVM) |
+| incus | Container and VM manager (LXD fork) |
+| incus-agent | Agent for Incus VMs |
+| lxc | Linux Containers userspace tools |
+| edk2-ovmf | UEFI firmware for VMs |
+| genisoimage | Create ISO-9660 images |
+
+### Performance, Tracing & Debugging
+| Package | Description |
+|---------|-------------|
+| bcc | BPF Compiler Collection (eBPF) |
+| bpftop | Top-like tool for eBPF programs |
+| bpftrace | High-level tracing language for eBPF |
+| sysprof | System-wide performance profiler |
+| iotop | Monitor I/O usage |
+| nicstat | Network interface statistics |
+| tiptop | Hardware counter monitoring |
+| trace-cmd | Kernel tracing (Ftrace) front-end |
+| util-linux-script | Terminal session recording |
+
+### Cockpit (Web Management)
+| Package | Description |
+|---------|-------------|
+| cockpit-system | Web-based system admin interface |
+| cockpit-machines | UI for managing Virtual Machines |
+| cockpit-podman | UI for Container management |
+| cockpit-ostree | UI for Atomic OS updates |
+| cockpit-networkmanager | UI for Network configuration |
+| cockpit-selinux | UI for SELinux troubleshooting |
+| cockpit-storaged | UI for Storage management |
+
+### Miscellaneous DX
+| Package | Description |
+|---------|-------------|
+| p7zip | Command-line 7-Zip port |
+| p7zip-plugins | Additional 7-Zip plugins |
+| numactl | Control NUMA policy |
+| ydotool | Generic automation tool (Wayland) |
