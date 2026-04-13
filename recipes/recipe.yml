@@ -25,6 +25,8 @@ modules:
     install:
       - 1password
       - btop
+      - chezmoi
+      - d2
       - neovim
       - waydroid
       - ghostty
@@ -50,5 +52,10 @@ modules:
           - org.gnome.Cheese
           - org.gnome.Tour
           - org.gnome.Connections
+
+  - type: gnome-extensions
+    install:
+      - 5389 # Screen Rotate — manual orientation + lock toggle (tablet mode)
+      - 4413 # Improved OSK — better on-screen keyboard in tablet mode
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
