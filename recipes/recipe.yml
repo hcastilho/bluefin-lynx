@@ -56,6 +56,6 @@ modules:
   - type: gnome-extensions
     install:
       - 5389 # Screen Rotate — manual orientation + lock toggle (tablet mode)
-      - 4413 # Improved OSK — better on-screen keyboard in tablet mode
+      # - 4413 # Improved OSK — better on-screen keyboard in tablet mode (incompatible with GNOME 49)
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
