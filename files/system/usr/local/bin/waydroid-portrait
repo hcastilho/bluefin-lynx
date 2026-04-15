@@ -1,0 +1,12 @@
+#!/bin/bash
+# Switch Waydroid to portrait orientation (1200×1920).
+# Run after rotating the screen to portrait mode.
+set -euo pipefail
+
+waydroid prop set persist.waydroid.width 1200
+waydroid prop set persist.waydroid.height 1920
+
+sudo waydroid container stop
+sudo waydroid container start
+
+echo "Waydroid is now in portrait mode (1200×1920)."

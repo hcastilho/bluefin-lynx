@@ -1,0 +1,12 @@
+#!/bin/bash
+# Switch Waydroid to landscape orientation (1920×1200).
+# Run after rotating the screen to landscape mode.
+set -euo pipefail
+
+waydroid prop set persist.waydroid.width 1920
+waydroid prop set persist.waydroid.height 1200
+
+sudo waydroid container stop
+sudo waydroid container start
+
+echo "Waydroid is now in landscape mode (1920×1200)."
