@@ -1,0 +1,14 @@
+# bluefin-lynx Brewfile
+# Baked into the image at /usr/share/bluefin-lynx/Brewfile.
+#
+# Only contains tools not covered by ujust commands.
+# CLI tools and flatpaks are handled via:
+#   ujust ublue-cli                          → cli.Brewfile
+#   ADD_DEVMODE=1 ujust install-system-flatpaks 0 1 → system-dx-flatpaks.Brewfile
+#
+# Install manually after rebasing:
+#   brew bundle --file=/usr/share/bluefin-lynx/Brewfile
+
+tap "ublue-os/tap"   # Claude Code cask
+
+cask "claude-code"   # Claude Code CLI (Anthropic)
