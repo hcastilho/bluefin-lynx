@@ -6,7 +6,7 @@ set -euo pipefail
 waydroid prop set persist.waydroid.width 1920
 waydroid prop set persist.waydroid.height 1200
 
-sudo waydroid container stop
-sudo waydroid container start
+waydroid session stop
+waydroid session start
 
 echo "Waydroid is now in landscape mode (1920×1200)."
