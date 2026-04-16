@@ -3,10 +3,9 @@
 # Run after rotating the screen to portrait mode.
 set -euo pipefail
 
-waydroid prop set persist.waydroid.width 1200
-waydroid prop set persist.waydroid.height 1920
-
+waydroid prop set persist.waydroid.width 960
+waydroid prop set persist.waydroid.height 1504
 waydroid session stop
-waydroid session start
+sudo waydroid container stop
 
-echo "Waydroid is now in portrait mode (1200×1920)."
+echo "Waydroid is now in portrait mode (960×1504)."

@@ -3,10 +3,9 @@
 # Run after rotating the screen to landscape mode.
 set -euo pipefail
 
-waydroid prop set persist.waydroid.width 1920
-waydroid prop set persist.waydroid.height 1200
-
+waydroid prop set persist.waydroid.width 1536
+waydroid prop set persist.waydroid.height 928
 waydroid session stop
-waydroid session start
+sudo waydroid container stop
 
-echo "Waydroid is now in landscape mode (1920×1200)."
+echo "Waydroid is now in landscape mode (1536×928)."
