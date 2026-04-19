@@ -12,4 +12,5 @@
 tap "ublue-os/tap"   # Claude Code cask
 
 cask "claude-code"           # Claude Code CLI (Anthropic)
+cask "gcloud-cli"            # Google Cloud CLI (gcloud)
 brew "googleworkspace-cli"   # gws — Google Workspace CLI (used by /obsidian-weekly-plan for calendar sync)
