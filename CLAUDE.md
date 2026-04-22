@@ -94,6 +94,14 @@ Uncomment/add the `files` module and place files under `files/system/` mirroring
 - `maximize_build_space: true` is set — do not remove it, the image is large.
 - Image signing requires `SIGNING_SECRET` to be set in the repository secrets.
 
+## Runtime Package Lists
+
+Some packages are installed at runtime rather than baked into the image, so updates don't require a rebase:
+
+- **Brewfile** — [files/system/usr/share/bluefin-lynx/Brewfile](files/system/usr/share/bluefin-lynx/Brewfile), baked to `/usr/share/bluefin-lynx/Brewfile`. Install: `brew bundle --file=/usr/share/bluefin-lynx/Brewfile`. Supports `brew`, `cask`, `tap`, and `flatpak` entries (flatpak support added in Homebrew 5.0.4, Linux-only).
+
+Flatpaks listed under `default-flatpaks` in [recipes/recipe.yml](recipes/recipe.yml) are reinstalled on every rebase; the Brewfile gives manual control instead.
+
 ## Applying a New Image to the Running System
 
 After a build is published, rebase the running system:

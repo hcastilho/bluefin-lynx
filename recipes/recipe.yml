@@ -39,9 +39,6 @@ modules:
   - type: default-flatpaks
     configurations:
       - scope: system
-        install:
-          - md.obsidian.Obsidian
-          - com.spotify.Client
         remove:
           - org.mozilla.Thunderbird
           - org.gnome.Calendar
