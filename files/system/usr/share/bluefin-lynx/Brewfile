@@ -20,3 +20,4 @@ flatpak "md.obsidian.Obsidian"
 flatpak "com.spotify.Client"
 flatpak "org.signal.Signal"
 flatpak "dev.zed.Zed"        # Zed editor
+flatpak "com.yubico.yubioath" # Yubico Authenticator
