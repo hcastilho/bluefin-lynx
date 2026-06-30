@@ -24,6 +24,7 @@ modules:
   - type: rpm-ostree
     install:
       - 1password
+      - 1password-cli
       - btop
       - chezmoi
       - d2
