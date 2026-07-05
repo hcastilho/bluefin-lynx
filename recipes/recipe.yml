@@ -34,6 +34,10 @@ modules:
       - insync
       - strace
 
+  - type: script
+    scripts:
+      - fix-1password-cli-perms.sh
+
   - type: brew
     auto-update: true
     brew-analytics: false
