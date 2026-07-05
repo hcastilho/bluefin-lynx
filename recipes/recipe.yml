@@ -32,6 +32,7 @@ modules:
       - waydroid
       - ghostty
       - insync
+      - strace
 
   - type: brew
     auto-update: true
