@@ -31,7 +31,7 @@ jobs:
     steps:
       # the build is fully handled by the reusable github action
       - name: Build Custom Image
-        uses: blue-build/github-action@v1.11
+        uses: blue-build/github-action@220bcb78283ed09e6aef1a95b840dd188d2fd591 # main as of 2026-07-05, past v1.11.1, includes docker/setup-buildx v4.1.0 + setup-qemu v4.0.0 (Node 24 compatible)
         with:
           recipe: ${{ matrix.recipe }}
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
