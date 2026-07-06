@@ -20,6 +20,7 @@ modules:
   - type: script
     scripts:
       - setup-repos.sh
+      - pin-onepassword-gids.sh
 
   - type: rpm-ostree
     install:
