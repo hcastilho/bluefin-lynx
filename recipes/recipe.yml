@@ -20,12 +20,9 @@ modules:
   - type: script
     scripts:
       - setup-repos.sh
-      - pin-onepassword-gids.sh
 
   - type: rpm-ostree
     install:
-      - 1password
-      - 1password-cli
       - btop
       - chezmoi
       - d2
@@ -34,6 +31,10 @@ modules:
       - ghostty
       - insync
       - strace
+
+  - type: bling
+    install:
+      - 1password
 
   - type: brew
     auto-update: true
