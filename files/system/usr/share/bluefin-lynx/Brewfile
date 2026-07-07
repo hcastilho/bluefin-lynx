@@ -21,3 +21,4 @@ flatpak "com.spotify.Client"
 flatpak "org.signal.Signal"
 flatpak "dev.zed.Zed"        # Zed editor
 flatpak "com.yubico.yubioath" # Yubico Authenticator
+flatpak "org.kde.digikam"    # digiKam — photo management
