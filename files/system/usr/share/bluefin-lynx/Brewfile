@@ -15,6 +15,8 @@ cask "claude-code"           # Claude Code CLI (Anthropic)
 cask "gcloud-cli"            # Google Cloud CLI (gcloud)
 brew "googleworkspace-cli"   # gws — Google Workspace CLI (used by /obsidian-weekly-plan for calendar sync)
 brew "uv"                    # Python package/venv manager (used by Personal Data Sync fetchers)
+brew "signal-cli"
+brew "qrencode"
 
 flatpak "md.obsidian.Obsidian"
 flatpak "com.spotify.Client"
