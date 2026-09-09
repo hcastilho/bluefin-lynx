@@ -11,7 +11,7 @@ Everything is declared in [`recipes/recipe.yml`](recipes/recipe.yml) — that fi
 | Layer | Contents |
 |---|---|
 | Extra repos | 1Password, Ghostty (COPR), Insync — see [`files/scripts/setup-repos.sh`](files/scripts/setup-repos.sh) |
-| `rpm-ostree` | `btop`, `chezmoi`, `d2`, `neovim`, `waydroid`, `ghostty`, `insync`, `strace` |
+| `rpm-ostree` | `avrdude`, `btop`, `chezmoi`, `d2`, `neovim`, `waydroid`, `ghostty`, `insync`, `strace` |
 | `bling` | 1Password (CLI `op`, SSH agent, desktop app, setgid pins on the helper binaries) |
 | Homebrew / Flatpak | [`Brewfile`](files/system/usr/share/bluefin-lynx/Brewfile), baked in at `/usr/share/bluefin-lynx/Brewfile` — **not** auto-installed, see [Post-install](#post-install) |
 | Flatpak removals | Thunderbird and the GNOME stock apps (Calendar, Contacts, Maps, Weather, Clocks, Cheese, Tour, Connections) |
@@ -108,6 +108,24 @@ systemctl reboot
   brew bundle --file=/usr/share/bluefin-lynx/Brewfile
   ```
 - **1Password autofill in Flatpak browsers** — see [`docs/1password-flatpak-browser-integration.md`](docs/1password-flatpak-browser-integration.md). Per-user setup; not baked into the image because the required state lives in each Flatpak's `~/.var/app/` config.
+- **Keyboard flashing (QMK)** — `avrdude` is in the image and the QMK CLI comes from the Brewfile. See [QMK flashing](#qmk-flashing) for the one prerequisite that is not baked in.
+
+## QMK flashing
+
+`lynx` is the flashing host for the [Sofle v2](https://github.com/defaultifnull/qmk_userspace). Firmware is compiled in CI, so only a flasher is needed locally:
+
+| Piece | Where it comes from |
+|---|---|
+| `avrdude` | `rpm-ostree` layer. Fedora ships 8.0; there is no `qmk` RPM and no `dfu-programmer`. |
+| `qmk` CLI | [`Brewfile`](files/system/usr/share/bluefin-lynx/Brewfile) — applied by hand, see [Post-install](#post-install). |
+
+**No udev rules, deliberately.** The Sofle is Pro Micro based (ATmega32U4, Caterina bootloader), and Caterina presents as a serial device: `/dev/ttyACM*`, owned `root:dialout`. Being in the `dialout` group is therefore the whole permission story for flashing without `sudo`, and that group is not something this image can grant — it is per-user state in `/etc`:
+
+```bash
+groups | grep -q dialout || sudo usermod -aG dialout "$USER"   # then log out and back in
+```
+
+QMK's [udev rules](https://github.com/qmk/qmk_udev) exist for bootloaders that appear as raw USB devices rather than serial ports, where group membership does not apply — and for raw-HID access to a *running* keyboard, which is what `qmk console` and Via/Vial use. Neither applies to this hardware as built. If the controller is ever swapped for a DFU-based one, or those tools are ever wanted, that is the time to add the rules; note that the raw-HID rule calls a helper upstream ships as C source rather than a binary, so it needs building.
 
 ## Building locally
 
