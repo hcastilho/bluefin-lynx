@@ -10,18 +10,17 @@
 #   brew bundle --file=/usr/share/bluefin-lynx/Brewfile
 
 tap "ublue-os/tap"   # Claude Code cask
-tap "qmk/qmk"        # QMK CLI
+
+# TODO
+# trust "ublue-os/tap"
+# trust "valkyrie00/bbrew"
 
 cask "claude-code"           # Claude Code CLI (Anthropic)
 cask "gcloud-cli"            # Google Cloud CLI (gcloud)
 brew "googleworkspace-cli"   # gws — Google Workspace CLI (used by /obsidian-weekly-plan for calendar sync)
-brew "uv"                    # Python package/venv manager (used by Personal Data Sync fetchers)
+brew "uv"                    # Python package/venv manager; also installs the QMK CLI — see README, QMK flashing
 brew "signal-cli"
 brew "qrencode"
-# QMK CLI — flashes the Sofle. The formula is macOS-first and its Linux support
-# is unverified; if `brew bundle` fails on it, `uv tool install qmk` is the
-# fallback and uv is already installed above.
-brew "qmk"
 
 flatpak "md.obsidian.Obsidian"
 flatpak "com.spotify.Client"
