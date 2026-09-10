@@ -108,7 +108,11 @@ systemctl reboot
   brew bundle --file=/usr/share/bluefin-lynx/Brewfile
   ```
 - **1Password autofill in Flatpak browsers** — see [`docs/1password-flatpak-browser-integration.md`](docs/1password-flatpak-browser-integration.md). Per-user setup; not baked into the image because the required state lives in each Flatpak's `~/.var/app/` config.
-- **Keyboard flashing (QMK)** — `avrdude` is in the image and the QMK CLI comes from the Brewfile. See [QMK flashing](#qmk-flashing) for the one prerequisite that is not baked in.
+- **Keyboard flashing (QMK)** — `avrdude` is in the image; the QMK CLI is installed per-user with `uv`:
+  ```bash
+  uv tool install qmk
+  ```
+  See [QMK flashing](#qmk-flashing) for why it is not in the Brewfile, and for the other prerequisite that is not baked in.
 
 ## QMK flashing
 
@@ -117,7 +121,9 @@ systemctl reboot
 | Piece | Where it comes from |
 |---|---|
 | `avrdude` | `rpm-ostree` layer. Fedora ships 8.0; there is no `qmk` RPM and no `dfu-programmer`. |
-| `qmk` CLI | [`Brewfile`](files/system/usr/share/bluefin-lynx/Brewfile) — applied by hand, see [Post-install](#post-install). |
+| `qmk` CLI | `uv tool install qmk` — per-user, see [Post-install](#post-install). **Not** Homebrew; see below. |
+
+**Not Homebrew.** The obvious route is `brew install qmk/qmk/qmk`, and it cannot work here. The tap is macOS-only: [`hid_bootloader_cli`](https://github.com/qmk/homebrew-qmk/blob/master/Formula/hid_bootloader_cli.rb), a hard dependency of `qmk`, sets `ENV["SDK"] = MacOS.sdk_path` in its install block, and `MacOS` is a constant Homebrew only defines on macOS — so on Linux the install aborts with `NameError: uninitialized constant … HidBootloaderCli::MacOS` before compiling anything. It publishes no `x86_64_linux` bottle to sidestep that, and `qmk` also pulls `osx-cross/arm` and `osx-cross/avr`, whose formulae gate their bottles on `pour_bottle? only_if: :clt_installed` (Xcode Command Line Tools). This is structural, not a packaging bug awaiting a fix; do not re-add the tap. `uv` ships a newer CLI anyway (1.2.0 vs the tap's 1.1.8), and installs it into `~/.local/share/uv` — per-user state, which is why it lives in [Post-install](#post-install) rather than the image, for the same reason as the `dialout` group below.
 
 **No udev rules, deliberately.** The Sofle is Pro Micro based (ATmega32U4, Caterina bootloader), and Caterina presents as a serial device: `/dev/ttyACM*`, owned `root:dialout`. Being in the `dialout` group is therefore the whole permission story for flashing without `sudo`, and that group is not something this image can grant — it is per-user state in `/etc`:
 
